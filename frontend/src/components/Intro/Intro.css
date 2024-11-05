@@ -1,0 +1,22 @@
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../assets/leafs.jpg');
+    border-image-repeat: no-repeat;
+    height: 100vh;
+    margin: 0;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    height: 500px;
+    border: 5px solid black;
+    border-radius: 1em;
+    text-align: center;
+    background: rgb(15,201,223);
+    background: radial-gradient(circle, rgba(15,201,223,0.8239496482186625) 0%, rgba(25,170,56,0.22450987230829833) 25%, rgba(80,184,123,0.4457983877144608) 100%); 
+}

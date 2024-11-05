@@ -1,0 +1,36 @@
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0   ;
+    height: 100vh;
+    background-image: url('../assets//leafs.jpg');
+}
+
+.container{
+    min-width: 350px;
+    background-color: cornflowerblue;
+    min-height: 500px;
+    border-radius: 1em;
+    border: 0.4em solid white;
+}
+
+.header{
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 5px;
+    border-radius: 15px;
+    margin-top: 50px;
+    letter-spacing: 0.6cqb;
+    background-color: rgb(173, 221, 221);
+    color: greenyellow;
+}
+
+
+.tasks{
+    display: flex;
+    flex-direction: column;
+    color: black;
+
+}
