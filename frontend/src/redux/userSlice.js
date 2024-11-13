@@ -4,6 +4,8 @@ import { loginUser } from '../../api/authService';
 export const loginUserAsync = createAsyncThunk('user/loginUser', async(userData, thunkAPI)=>{
     try{
         const response = await loginUser(userData);
+        const {token} = response;
+        localStorage.setItem('token', response)
         return response;
     }  catch(error){
         return thunkAPI.rejectWithValue(error.response.data);

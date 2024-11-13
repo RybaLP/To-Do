@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import { loginUserAsync } from '../../redux/userSlice';
@@ -20,10 +20,18 @@ const Login = () => {
         await dispatch(loginUserAsync(userData))
     }
 
-    if(isLoggedIn){
-      navigate('/home');
-    }
+    // zmiana routingu do home
+
     
+    
+    useEffect(()=>{
+      if(isLoggedIn){
+        navigate('/home');
+      }
+    }, [isLoggedIn, navigate])
+    
+
+
     return (
       <div className='container'>
         <form method='POST' onSubmit={handleSubmit}>
