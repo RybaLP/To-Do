@@ -4,7 +4,7 @@ const API_URL = "http://localhost:5000";
 
 export const registerUser = async(userData) => {
     const response = await axios.post(`${API_URL}/register`, userData);
-    return response.data; 
+    return response.data;
 }
 
 export const loginUser = async(userData) => {
@@ -36,8 +36,7 @@ export const getHome = async(req,res) => {
     })
 
     console.log('odpowiedz z /home ', response);  
-
     
-    return response;
+    return {jwt: token, response: response.data}
 }
 
