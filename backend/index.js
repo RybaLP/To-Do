@@ -3,6 +3,7 @@ import cors from 'cors';
 import { ConnectDB } from './db/index.js';
 import router from './routes/userRoutes.js';
 import dotenv from 'dotenv';
+import taskRouter from './routes/taskRoutes.js';
 
 dotenv.config();
 const app = express();
@@ -16,6 +17,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(express.json());
+app.use(taskRouter);
 app.use(router);
 
 const PORT = process.env.PORT || 5000;

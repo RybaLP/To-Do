@@ -3,14 +3,13 @@ import mongooseSequence from "mongoose-sequence";
 
 const taskSchema = mongoose.Schema({
     task: {
-        type: "String",
+        type: String,
         required: true,
         minLength: 5,
         maxLength: 15
     },
     index: {
         type: Number,
-        required: true,
         unique: true
     }
 });

@@ -2,17 +2,21 @@ import React, { useEffect } from 'react'
 import './Main.css'
 import { getHome } from '../../../api/authService';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../redux/userSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch , useSelector} from 'react-redux';
+import { fetchTasksAsync } from '../../redux/taskSlice';
 
 const MainPage = () => {
 
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
+
+  const tasks = useSelector((state)=>state.tasks.tasks);
+  const loading = useSelector((state) => state.tasks.loading);
+  const fetchError = useSelector((state) => state.tasks.error);
 
   useEffect(()=>{
     const fetchHomeData = async() =>{
@@ -36,15 +40,10 @@ const MainPage = () => {
     fetchHomeData();
   }, [navigate])
 
-  const tasks = [{
-    name: 'take a dog',
-    index: 1,
-  },
-  {
-    name: 'brush your teath',
-    index: 2,
-  }
-]
+useEffect(()=>{
+  dispatch(fetchTasksAsync());
+}, [dispatch])
+
 
 const handleLogOut = () => {
   localStorage.removeItem("token"); // Usuń token z localStorage
@@ -60,11 +59,24 @@ const handleLogOut = () => {
           <h3>To Do</h3>
           <input type='text'></input>
         <br />
-          <button>Add task +</button>
+        
+          <button>
+            <Link to="/create"> Add task +</Link>
+          </button>
+
+
       </div>
       <div className='tasks'>
+        {loading && <p>Loading tasks...</p>}
+        {fetchError && <p style={{ color: 'red' }}>Error: {fetchError}</p>}
         <ul className='list'>
-           {tasks.map((task)=>{return <li key={task.index}>{task.name}</li>})}
+          {tasks.length > 0 ? (
+            tasks.map((task) => (
+              <li key={task.index}>{task.task}</li> // Upewnij się, że 'task.id' to unikalny identyfikator
+            ))
+          ) : (
+            <li>No tasks found.</li>
+          )}
         </ul>
       </div>
     </div>

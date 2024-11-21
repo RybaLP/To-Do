@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
-import './Intro.css'
+
 const Intro = () => {
     return (
       <div className='container'>
