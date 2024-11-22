@@ -12,7 +12,7 @@ export const verifyToken = (req,res,next) => {
         if(err){
             return res.status(401).json({message: "Unauthorized! "});
         }
-        req.userID = decoded.id;
+        req.userId = decoded.id;
         next();
     });
 };

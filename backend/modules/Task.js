@@ -8,6 +8,11 @@ const taskSchema = mongoose.Schema({
         minLength: 5,
         maxLength: 15
     },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true
+    },
     index: {
         type: Number,
         unique: true
