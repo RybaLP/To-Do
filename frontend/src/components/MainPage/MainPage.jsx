@@ -41,8 +41,13 @@ const MainPage = () => {
   }, [navigate])
 
 useEffect(()=>{
+  const token = localStorage.getItem("token");
+  if(!token){
+    navigate('/');
+    return;
+  }
   dispatch(fetchTasksAsync());
-}, [dispatch])
+}, [dispatch, navigate])
 
 
 const handleLogOut = () => {
