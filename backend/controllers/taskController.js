@@ -31,3 +31,19 @@ export const FetchTasks = async(req,res) => {
         return res.status(500).json({success: false, message:"cant find tasks! "});
     }
 }
+
+
+export const deleteTask = async(req,res) => {
+    const {taskId} = req.body;
+    console.log("task id in controller : " , taskId);
+
+    try{
+        const deletedTask = await Task.findByIdAndDelete(taskId);
+        if(!deletedTask){return res.status(401).json({success:false, message: "Deleted task does not exist !  "})}
+        return res.status(200).json({success : true , message : "Task deleted successfuly! "});
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({success:false, message: `error : ${error}`});
+    }
+}
+

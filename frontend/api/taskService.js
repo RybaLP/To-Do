@@ -46,3 +46,23 @@ export const addTask = async (taskData) => {
         throw new Error("Failed to add task");  
     }
 }
+
+
+export const deleteTask = async(taskId) => {
+    const token = localStorage.getItem("token");
+    console.log("task service token : " , token);  /// dziala 
+    if(!token) throw new Error("No token found! ");
+    console.log('delete task id : ' , taskId);
+
+    try{
+        const response = axios.delete(`${API_URL}/tasks/delete`, {
+            headers: {
+                Authorization: `Bearer: ${token}`,
+                "Content-Type" : "application/json"
+            }, data:{taskId}
+        }) 
+        // return response.data;
+    } catch(error) {
+        throw new Error(error);
+    }
+}

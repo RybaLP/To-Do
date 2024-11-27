@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchTasks, addTask } from "../../api/taskService";
+import { fetchTasks, addTask , deleteTask} from "../../api/taskService";
 
 export const fetchTasksAsync = createAsyncThunk("tasks/fetch", async () => {
     return await fetchTasks();
@@ -8,6 +8,12 @@ export const fetchTasksAsync = createAsyncThunk("tasks/fetch", async () => {
 export const addTaskAsync = createAsyncThunk("tasks/add", async (taskData) => {
     return await addTask(taskData);
 });
+
+export const deleteTaskAsync = createAsyncThunk("tasks/delete", async(taskId) => {
+    console.log("redux : " , taskId);
+    await deleteTask(taskId);
+    return taskId;
+})
 
 const taskSlice = createSlice({
     name: "tasks",
@@ -42,7 +48,10 @@ const taskSlice = createSlice({
             .addCase(addTaskAsync.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message; // Obsługa błędów
-            });
+            })
+            .addCase(deleteTaskAsync.fulfilled, (state, action)=>{
+                state.tasks = state.tasks.filter((task)=>task._id !== action.payload);
+            })
     }
 });
 

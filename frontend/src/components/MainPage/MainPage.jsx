@@ -5,7 +5,8 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../redux/userSlice';
 import { useDispatch , useSelector} from 'react-redux';
-import { fetchTasksAsync } from '../../redux/taskSlice';
+import { fetchTasksAsync, deleteTaskAsync } from '../../redux/taskSlice';
+
 
 const MainPage = () => {
 
@@ -57,6 +58,17 @@ const handleLogOut = () => {
   navigate('/'); // Przeniesienie do strony głównej po usunięciu tokena
 }
 
+const handleDelete = async (taskId) => {
+
+    try{
+      console.log("handledelete : " , taskId);
+      await dispatch(deleteTaskAsync(taskId));
+    }
+    catch(error){
+      console.error(error, "we obstacle some server errors ! ");
+    }
+}
+
   return (
     <div className='container'>
       <button onClick={handleLogOut}>Log Out</button>
@@ -77,7 +89,8 @@ const handleLogOut = () => {
         <ul className='list'>
           {tasks.length > 0 ? (
             tasks.map((task) => (
-              <li key={task.index}>{task.task}</li> // Upewnij się, że 'task.id' to unikalny identyfikator
+              <li key={task.index}>{task.task}<button onClick={()=>{handleDelete(task._id)}}>DELETE
+              </button></li> 
             ))
           ) : (
             <li>No tasks found.</li>
