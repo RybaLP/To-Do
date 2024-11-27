@@ -33,10 +33,10 @@ const Login = () => {
 
 
     return (
-      <div className='container'>
+      <div className='login-container'>
         <form method='POST' onSubmit={handleSubmit}>
           <input type='input' placeholder='Username' value={username} onChange={(e)=>setUsername(e.target.value)}></input>
-          <input type='input' placeholder='Password' value={password} onChange={(e)=>setPassword(e.target.value)}></input>
+          <input type='password' placeholder='Password' value={password} onChange={(e)=>setPassword(e.target.value)}></input>
           <button type='submit'>Submit</button>
         </form>
         {loading && <p>Loading...</p>}

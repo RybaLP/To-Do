@@ -1,9 +1,35 @@
-body{
+.register-container{
+    width: 500px;
+    height: 500px;
     display: flex;
+    flex-direction: column;
     align-items: center;
+    background-color: aqua;
+    gap: 10px;
+    border-radius: 60px;
     justify-content: center;
-    background-image: url('../assets/leafs.jpg');
-    border-image-repeat: no-repeat;
-    height: 100vh;
-    margin: 0;
+}
+
+.register-container input {
+    margin-top: 20px;
+    width: 70%;
+    height: 13%;
+    border-radius: 100px;
+    text-align: center;
+    font-size: 1.3em;
+
+
+}
+
+.register-container button {
+    padding: 20px 30px;
+    font-size: 1.5em;
+    border-radius: 20px;
+    border: 5px solid black;
+    margin-top: 30px;
+}
+
+.register-container button:hover{
+    transition: 0.3s;
+    transform: scale(1.02);
 }

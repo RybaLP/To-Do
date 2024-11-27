@@ -70,7 +70,8 @@ const handleDelete = async (taskId) => {
 }
 
   return (
-    <div className='container'>
+    <div className='main-container'>
+      
       <button onClick={handleLogOut}>Log Out</button>
       <div className='header'>
           <h3>To Do</h3>
@@ -83,7 +84,7 @@ const handleDelete = async (taskId) => {
 
 
       </div>
-      <div className='tasks'>
+      <div className='main-tasks'>
         {loading && <p>Loading tasks...</p>}
         {fetchError && <p style={{ color: 'red' }}>Error: {fetchError}</p>}
         <ul className='list'>
