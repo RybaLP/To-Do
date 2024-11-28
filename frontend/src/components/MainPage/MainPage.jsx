@@ -73,21 +73,17 @@ const handleDelete = async (taskId) => {
     <div className='main-container'>
       
       <button onClick={handleLogOut}>Log Out</button>
-      <div className='header'>
+      <div className='main-header'>
           <h3>To Do</h3>
-          <input type='text'></input>
         <br />
-        
           <button>
             <Link to="/create"> Add task +</Link>
           </button>
-
-
       </div>
       <div className='main-tasks'>
         {loading && <p>Loading tasks...</p>}
         {fetchError && <p style={{ color: 'red' }}>Error: {fetchError}</p>}
-        <ul className='list'>
+        <ul className='main-list'>
           {tasks.length > 0 ? (
             tasks.map((task) => (
               <li key={task.index}>{task.task}<button onClick={()=>{handleDelete(task._id)}}>DELETE
